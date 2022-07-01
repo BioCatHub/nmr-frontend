@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   Pump: boolean = false
   loading: boolean = false
   loading_pump: boolean = false
+  stop_flow_stauts:boolean = false
+
 
   ngOnInit(): void {
 
@@ -52,6 +54,16 @@ export class DashboardComponent implements OnInit {
       console.log(e)
       this.Pump = false
       this.loading_pump = false
+    })
+  }
+
+  stopFlow() {
+    this.stop_flow_stauts = true
+
+    this.ot.stopFlow().subscribe((e) => {
+      console.log(e)
+      this.Pump = false
+      this.stop_flow_stauts = false
     })
   }
 

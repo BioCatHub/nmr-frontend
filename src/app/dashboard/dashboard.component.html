@@ -43,6 +43,7 @@
 </div>
 
 <div class="clr-row">
+
   <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
     <div class="card">
       <h3 class="card-header">Measurment: Start the NMR</h3>
@@ -56,6 +57,26 @@
         <div class="card-footer">
           <span *ngIf="LED" class="label label-success">LED on</span>
           <span *ngIf="!LED" class="label label-danger">LED off</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
+    <div class="card">
+      <h3 class="card-header">Stop flow</h3>
+      <div class="card-block">
+        <div *ngIf="!loading" class="card-text">
+          <button class="btn btn-primary" (click)="stopFlow()"> Stop flow meachnism </button>
+        </div>
+        <div *ngIf="stop_flow_stauts" class="card-text spin-container">
+          <span class="spinner spinner-inline"></span>
+        </div>
+        <div class="card-footer">
+          <span *ngIf="LED" class="label label-success">stop flow ongoing</span>
+          <span *ngIf="!LED" class="label label-danger">stop flow inactive</span>
 
         </div>
       </div>
