@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OtInterfaceService } from '../shared/ot-interface.service'
+import { timer, Observable } from "rxjs"
+
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +17,13 @@ export class DashboardComponent implements OnInit {
   loading: boolean = false
   loading_pump: boolean = false
   stop_flow_stauts:boolean = false
+  timer_status:boolean = false
+  loop = true
+  number = 0
+
+  timer_reacation_time = timer(2000)
+  timer_LED = timer(5000)
+  timer_measurement_time:any
 
 
   ngOnInit(): void {
@@ -74,4 +83,42 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  start_experiment(){
+    this.startTimer()
+  }
+  
+  startTimer() {
+    
+    console.log("startTimer")
+    this.timer_reacation_time.subscribe((x) => 
+    {console.log("LED läuft")  
+    this.ot.startLED().subscribe((e) => {
+    console.log(e)
+    this.LED = true;
+    this.loading = false
+    this.timer_LED.subscribe(()=>{
+      this.ot.stopLED().subscribe((e) => {
+        console.log(e)
+        this.LED = false;
+        this.loading = false
+      })
+    })
+    })
+  } )
 }
+
+  printOutTree(){
+    console.log("3")
+  }
+
+  startTimerTests(){
+    this.printOutTree()
+    this.number++
+
+    if(this.number < 4){
+    
+    this.startTimerTests()
+  }
+  }
+}
+

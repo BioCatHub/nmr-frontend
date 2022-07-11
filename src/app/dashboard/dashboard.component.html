@@ -83,4 +83,24 @@
     </div>
   </div>
 
+
+  <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
+    <div class="card">
+      <h3 class="card-header">timed measurement</h3>
+      <div class="card-block">
+        <div *ngIf="!loading" class="card-text">
+          <button class="btn btn-primary" (click)="startTimerTests()"> start timer </button>
+        </div>
+        <div *ngIf="timer_status" class="card-text spin-container">
+          <span class="spinner spinner-inline"></span>
+        </div>
+        <div class="card-footer">
+          <span *ngIf="LED" class="label label-success">stop flow ongoing</span>
+          <span *ngIf="!LED" class="label label-danger">stop flow inactive</span>
+          <button>stop timer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
