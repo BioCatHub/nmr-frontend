@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   loading_pump: boolean = false
   stop_flow_stauts:boolean = false
   timer_status:boolean = false
+  timer_automated_measurement:boolean = false
   loop = true
   number = 0
 
@@ -112,13 +113,22 @@ export class DashboardComponent implements OnInit {
   }
 
   startTimerTests(){
-    this.printOutTree()
-    this.number++
-
-    if(this.number < 4){
-    
-    this.startTimerTests()
-  }
+    this.timer_reacation_time.subscribe(()=>{
+      this.timer_automated_measurement = true
+      console.log("timer python has started")
+      this.ot.automated_system().subscribe((e) => {
+        
+        console.log("timer_has_started")
+        console.log(e+this.number)
+        this.number++
+        if (this.number <4){
+          this.startTimerTests()
+        }
+        else if(this.number>=4){
+          console.log("system has finished")
+        }
+        this.timer_automated_measurement = false
+      })})
   }
 }
 
