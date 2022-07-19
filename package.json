@@ -26,6 +26,8 @@
     "@clr/icons": "4.0.16",
     "@clr/ui": "4.0.16",
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "angular-plotly.js": "^4.0.4",
+    "plotly.js": "^2.13.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
