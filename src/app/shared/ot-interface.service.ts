@@ -39,6 +39,11 @@ export class OtInterfaceService {
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/stop_flow")
   }
 
+  calibratePump():Observable<any> {
+    console.log("es funktioniert")
+    return this.http.get<any>("http://127.0.0.1:5000/api/ot/test_pump")
+  }
+
   automated_system():Observable<any> {
     console.log("automated system")
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/automated_system")

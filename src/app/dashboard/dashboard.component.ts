@@ -67,10 +67,10 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  stopFlow() {
+  calibratePump() {
     this.stop_flow_stauts = true
 
-    this.ot.stopFlow().subscribe((e) => {
+    this.ot.calibratePump().subscribe((e) => {
       console.log(e)
       this.Pump = false
       this.stop_flow_stauts = false
