@@ -1,7 +1,13 @@
 <p>visualisation works!</p>
 
+<button (click)="addNumber()"> add numbers </button>
+
+'<div id="pagegraph" #pagegraph></div>'
+
+{{data.data | json}}
 
 <plotly-plot
-  [data]="graph2.data"
-  [layout]="graph2.layout"
-  [useResizeHandler]="true"></plotly-plot>
+  [data]="data.data"
+  [layout]="data.layout"
+  [useResizeHandler]="true"
+  [updateOnDataChange] = "true"></plotly-plot>
