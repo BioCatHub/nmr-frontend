@@ -10,7 +10,8 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { VisualisationComponent } from './visualisation/visualisation.component'
+import { VisualisationComponent } from './visualisation/visualisation.component';
+import { CalibrationComponent } from './calibration/calibration.component'
 //import { CdsModule } from '@cds/angular';
 //import { ClarityIcons, userIcon } from '@cds/core/icon';
 
@@ -20,7 +21,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
   declarations: [
     AppComponent,
     DashboardComponent,
-    VisualisationComponent
+    VisualisationComponent,
+    CalibrationComponent
   ],
   imports: [
     BrowserModule,
