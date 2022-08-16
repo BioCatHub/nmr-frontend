@@ -2,12 +2,8 @@
 
 <button (click)="addNumber()"> add numbers </button>
 
-'<div id="pagegraph" #pagegraph></div>'
-
 {{data.data | json}}
 
-<plotly-plot
-  [data]="data.data"
-  [layout]="data.layout"
-  [useResizeHandler]="true"
-  [updateOnDataChange] = "true"></plotly-plot>
+<div id="pagegraph" #pagegraph></div>
+
+
