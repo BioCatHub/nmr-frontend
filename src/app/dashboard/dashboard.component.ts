@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   public data = {
     data: [
-      { x: [0], y: [0], type: 'scatter', name:"data1"},
+      { x: [0,1,2,3], y: [ 0, 7.729109045048115, 6.98580907441182, 4.88277841409298  ], type: 'scatter', name:"data1"},
     ],
     layout: {title: 'Reaction flow'}
   };
@@ -35,17 +35,18 @@ export class DashboardComponent implements OnInit {
   timer_status:boolean = false
   timer_automated_measurement:boolean = false
   loop = true
-  number = 0
-
-  timer_reacation_time = timer(2000)
+  number = 1
+  time =  new Date()
+  reactionDuration = 10000
+  //timer_reacation_time = timer(this.reactionDuration)
   timer_LED = timer(5000)
   timer_measurement_time:any
   user = new BehaviorSubject(this.data);
+  enzymeAdded = false
 
 
   ngOnInit(): void {
     Plotly.newPlot('pagegraph', this.data.data, this.data.layout)
-
   }
 
   startLED() {
@@ -75,6 +76,20 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  startPump2() {
+    this.loading_pump = true
+    this.ot.start_pump_2().subscribe((e) => {
+      console.log(e)
+    })
+  }
+
+  stopPump2() {
+    this.loading_pump = true
+    this.ot.stop_pump_2().subscribe((e) => {
+      console.log(e)
+    })
+  }
+
   stopPump() {
     this.loading_pump = true
     this.ot.stopPump().subscribe((e) => {
@@ -95,6 +110,7 @@ export class DashboardComponent implements OnInit {
   }
 
   startMeasurement() {
+    console.log("start Measurement runs")
     this.loading_pump = true
     this.ot.startMeasurement().subscribe((e) => {
       console.log(e)
@@ -104,10 +120,17 @@ export class DashboardComponent implements OnInit {
   start_experiment(){
     this.startTimer()
   }
+
+  setTime(){
+    this.time = new Date()
+    this.time.setMilliseconds(this.time.getMilliseconds()+this.reactionDuration)
+  }
   
   startTimer() {
-    
+    console.log("hallo")
+/*    
     console.log("startTimer")
+    this.setTime()
     this.timer_reacation_time.subscribe((x) => 
     {console.log("LED läuft")  
     this.ot.startLED().subscribe((e) => {
@@ -123,6 +146,7 @@ export class DashboardComponent implements OnInit {
     })
     })
   } )
+  */
 }
 
   printOutTree(){
@@ -130,19 +154,30 @@ export class DashboardComponent implements OnInit {
   }
 
   startTimerTests(){
-    this.timer_reacation_time.subscribe(()=>{
+
+    let timer_reacation_time = timer(this.reactionDuration)
+
+    console.log("enzyme added", this.enzymeAdded)
+    console.log("start Measurement runs")
+    timer_reacation_time.subscribe(()=>{
       this.timer_automated_measurement = true
       console.log("timer python has started")
+      if(this.enzymeAdded==true){
+      this.reactionDuration = 1800000
+      }
       this.ot.automated_system().subscribe((e) => {
         
         console.log("timer_has_started")
         console.log(e+this.number)
         console.log(e["butanal"]["concentration"])
         this.number++
-        if (this.number <4){
+        
+        console.log("the reaction duration is now:", this.reactionDuration)
+
+        if (this.number <100){
           this.startTimerTests()
         }
-        else if(this.number>=4){
+        else if(this.number>=100){
           console.log("system has finished")
         }
         this.timer_automated_measurement = false
@@ -167,8 +202,11 @@ export class DashboardComponent implements OnInit {
         }
         Plotly.update('pagegraph', this.data.data, this.data.layout)
 
-        
-        
+        console.log(this.number)
+    
+        console.log("reaction time is", this.reactionDuration)
+        this.setTime()
+
       })})
   }
 

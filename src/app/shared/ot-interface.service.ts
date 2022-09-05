@@ -49,5 +49,13 @@ export class OtInterfaceService {
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/automated_system")
   }
 
+  start_pump_2():Observable<any> {
+    console.log("automated system")
+    return this.http.get<any>("http://127.0.0.1:5000/api/ot/start_pump_2")
+  }
+  stop_pump_2():Observable<any> {
+    console.log("automated system")
+    return this.http.get<any>("http://127.0.0.1:5000/api/ot/stop_pump_2")
+  }
 
 }

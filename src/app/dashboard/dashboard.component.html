@@ -46,10 +46,11 @@
 
   <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
     <div class="card">
-      <h3 class="card-header">Measurment: Start the NMR</h3>
+      <h3 class="card-header">start pump 2</h3>
       <div class="card-block">
         <div *ngIf="!loading" class="card-text">
-          <button class="btn btn-primary" (click)="startMeasurement()"> start Measurment </button>
+          <button class="btn btn-primary" (click)="startPump2()"> start Pump2 </button>
+          <button class="btn btn-primary" (click)="stopPump2()"> stop Pump 2 </button>        
         </div>
         <div *ngIf="loading" class="card-text spin-container">
           <span class="spinner spinner-inline"></span>
@@ -97,7 +98,10 @@
         <div class="card-footer">
           <span *ngIf="LED" class="label label-success">stop flow ongoing</span>
           <span *ngIf="!LED" class="label label-danger">stop flow inactive</span>
-          <button>stop timer</button>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox value="enzymeAdded" name="options1" [checked]="enzymeAdded" (change)="enzymeAdded = !enzymeAdded" />
+            <label>Enzyme added?</label>
+          </clr-checkbox-wrapper>
         </div>
       </div>
     </div>
@@ -105,8 +109,17 @@
 
 </div>
 
+<app-calibration></app-calibration>
+
 <button (click)="addNumber()"> add numbers </button>
+<button (click)="setTime()"> set time </button>
 
 {{data.data | json}}
+
+<div class="clr-row">
+  <div class="clr-col-4">
+      <span class="label label-light-blue" > Next measurement at {{time.getHours()}}:{{time.getMinutes()}}</span>
+  </div>
+</div>
 
 <div id="pagegraph" #pagegraph></div>
