@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, of, timer } from 'rxjs'
+import { concatMap } from 'rxjs/operators';
 import * as Plotly from 'plotly.js/dist/plotly.js';
 import { Config, Data, Layout } from 'plotly.js/dist/plotly.js';
 
@@ -37,6 +38,7 @@ export class VisualisationComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    console.log("ALIVEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
 
     Plotly.newPlot('pagegraph', this.data.data, this.data.layout)
   }
@@ -70,7 +72,9 @@ export class VisualisationComponent implements OnInit {
     Plotly.update('pagegraph', this.data.data, this.data.layout)
     
     console.log("data object is:", this.data)
-
   }
+
+
+
 
 }

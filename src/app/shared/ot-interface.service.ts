@@ -63,4 +63,10 @@ export class OtInterfaceService {
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/stop_pump_2")
   }
 
+  startReaction2(time):Observable<any> {
+    console.log("automated system")
+    let pump_duration = JSON.stringify({duration:time})
+    return this.http.post<any>("http://127.0.0.1:5000/api/ot/reaction2",pump_duration,{headers:{'Content-Type': 'application/json'}} )
+  }
+
 }

@@ -18,19 +18,23 @@ export class ControlCommandsService {
   }
 
   updateMeasurmentData(data, update, initialTime) {
-    console.log(initialTime)
     console.log("request ist", update)
     let xarray = data.data[0]["x"]
     let last_entry = xarray[xarray.length - 1]
     let time = this.getTimeDifference(initialTime)
     xarray.push(time)
+    let xarray_PAC = data.data[1]["x"]
+    xarray_PAC.push(time)
 
-    let yarray = data.data[0]["y"]
-    yarray.push(2)
+    let y_benzaldehyde = data.data[0]["y"]
+    let y_PAC = data.data[1]["y"]
+    y_benzaldehyde.push(2)
+    y_PAC.push(3)
 
     let updated = {
       data: [
-        { x: xarray, y: yarray, type: 'scatter', name: "data1" },
+        { x: xarray, y: y_benzaldehyde, type: 'scatter', name: "3-OH-benzaldehyde" },
+        { x: xarray_PAC, y: y_PAC, type: 'scatter', name: "3-OH-benzaldehyde" },
       ],
       layout: { title: 'Reaction flow' }
     }
@@ -58,11 +62,26 @@ export class ControlCommandsService {
   updateMolecules(concentrations, Molecules, boundaries){
       console.log("concentrations are",concentrations["butanal"]["concentration"])
       Molecules["butanal"]["latest_concentration"] = concentrations["butanal"]["concentration"]
-      if (Molecules["butanal"]["latest_concentration"] <= boundaries["butanal"]){
-        Molecules["butanal"]["status"] = "finished"
-      }
       return Molecules
 
+  }
+
+  caseDecision(number, molecules, boundaries){
+
+    if (number >= 100) {
+      console.log("system has finished")
+      return {status:"stop", content:molecules}
+    }
+    else if (molecules["butanal"]["status"] == "not-started") {
+      molecules["butanal"]["status"] = "started"
+      return {status:"continue", content:molecules}
+      
+    }
+    else if (molecules["butanal"]["status"] == "started" && molecules["butanal"]["latest_concentration"] <= boundaries["butanal"]) {
+      molecules["butanal"]["status"] == "finished"
+      return {status:"cascade_step_1_finished", content:molecules}
+
+    }
   }
 
 
