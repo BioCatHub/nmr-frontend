@@ -1,68 +1,75 @@
-<h2>control panel </h2>
+<div class="card card-formatter">
 
-<div class="clr-row">
-  <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-    <div class="card">
-      <h3 class="card-header">Reaction Step 1: Inactivate the enzyme</h3>
-      <div class="card-block">
-        <div *ngIf="!loading" class="card-text">
-          <button class="btn btn-primary" (click)="startLED()"> start LED </button>
-          <button class="btn btn-primary" (click)="stopLED()"> Stop LED </button>
-        </div>
-        <div *ngIf="loading" class="card-text spin-container">
-          <span class="spinner spinner-inline"></span>
-        </div>
-        <div class="card-footer">
-          <span *ngIf="LED" class="label label-success">LED on</span>
-          <span *ngIf="!LED" class="label label-danger">LED off</span>
+  <h2>control panel </h2>
 
+  <div class="clr-row">
+    <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
+      <div class="card control-card-format">
+        <h3 class="card-header">Test LED Stripe</h3>
+        <div class="card-block">
+          <div *ngIf="!loading" class="card-text">
+            <button class="btn btn-primary" (click)="startLED()"> start LED </button>
+            <button class="btn btn-primary" (click)="stopLED()"> Stop LED </button>
+          </div>
+          <div *ngIf="loading" class="card-text spin-container">
+            <span class="spinner spinner-inline"></span>
+          </div>
+          <div class="card-footer">
+            <span *ngIf="LED" class="label label-success">LED on</span>
+            <span *ngIf="!LED" class="label label-danger">LED off</span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
+      <div class="card control-card-format">
+        <h3 class="card-header">Test peristaltic pump</h3>
+        <div class="card-block">
+          <div *ngIf="!loading_pump" class="card-text">
+            <button class="btn btn-primary" (click)="startPump()"> start pump </button>
+            <button class="btn btn-primary" (click)="stopPump()"> stop pump </button>
+          </div>
+          <div *ngIf="loading_pump" class="card-text spin-container">
+            <span class="spinner spinner-inline"></span>
+          </div>
+          <div class="card-footer">
+            <span *ngIf="Pump" class="label label-success">Pump on</span>
+            <span *ngIf="!Pump" class="label label-danger">Pump off</span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
+      <div class="card control-card-format">
+        <h3 class="card-header">Test feeding pump</h3>
+        <div class="card-block">
+          <div *ngIf="!loading" class="card-text">
+            <button class="btn btn-primary" (click)="startPump2()"> start Pump2 </button>
+            <button class="btn btn-primary" (click)="stopPump2()"> stop Pump 2 </button>
+          </div>
+          <div *ngIf="loading" class="card-text spin-container">
+            <span class="spinner spinner-inline"></span>
+          </div>
+          <div class="card-footer">
+            <span *ngIf="LED" class="label label-success">LED on</span>
+            <span *ngIf="!LED" class="label label-danger">LED off</span>
+
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-    <div class="card">
-      <h3 class="card-header">Reaction Step 2: Feed the enzyme</h3>
-      <div class="card-block">
-        <div *ngIf="!loading_pump" class="card-text">
-          <button class="btn btn-primary" (click)="startPump()"> start pump </button>
-          <button class="btn btn-primary" (click)="stopPump()"> stop pump </button>
-        </div>
-        <div *ngIf="loading_pump" class="card-text spin-container">
-          <span class="spinner spinner-inline"></span>
-        </div>
-        <div class="card-footer">
-          <span *ngIf="Pump" class="label label-success">Pump on</span>
-          <span *ngIf="!Pump" class="label label-danger">Pump off</span>
 
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
 
 <div class="clr-row">
 
-  <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-    <div class="card">
-      <h3 class="card-header">start pump 2</h3>
-      <div class="card-block">
-        <div *ngIf="!loading" class="card-text">
-          <button class="btn btn-primary" (click)="startPump2()"> start Pump2 </button>
-          <button class="btn btn-primary" (click)="stopPump2()"> stop Pump 2 </button>
-        </div>
-        <div *ngIf="loading" class="card-text spin-container">
-          <span class="spinner spinner-inline"></span>
-        </div>
-        <div class="card-footer">
-          <span *ngIf="LED" class="label label-success">LED on</span>
-          <span *ngIf="!LED" class="label label-danger">LED off</span>
 
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
