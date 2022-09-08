@@ -1,0 +1,15 @@
+.spin-container{
+    display:flex;
+    justify-content:center;
+    margin-left:300
+}
+
+
+.card-formatter{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.control-card-format{
+    margin-bottom:2%;
+}

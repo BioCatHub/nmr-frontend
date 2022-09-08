@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
   }
 
   stopPump2() {
-    this.loading_pump = true
+    this.loading_pump = false
     this.ot.stop_pump_2().subscribe((e) => {
       console.log(e)
     })

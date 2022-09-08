@@ -55,35 +55,54 @@ export class ControlCommandsService {
       butanal:{
         latest_concentration:0,
         status:"not-started"
-      }
+      },
+      PAC:{
+        latest_concentration:0,
+        status:"not-started"
+      },
     }
     return molecules
   }
   updateMolecules(concentrations, Molecules, boundaries){
+    console.log(Molecules)
       console.log("concentrations are",concentrations["butanal"]["concentration"])
       Molecules["butanal"]["latest_concentration"] = concentrations["butanal"]["concentration"]
+      Molecules["PAC"]["latest_concentration"] = concentrations["PAC"]["concentration"]
       return Molecules
-
   }
-
   caseDecision(number, molecules, boundaries){
+
+    let butanal_status = molecules["butanal"]["status"]
+    let butanal_conc = molecules["butanal"]["latest_concentration"]
+    let PAC_status = molecules["PAC"]["status"]
+    let PAC_conc = molecules["PAC"]["latest_concentration"]
+    //let metaraminol_status = molecules["metaraminol"]["status"]
+    //let metaraminol_coc = molecules["metaraminol"]["concentration"]
+
 
     if (number >= 100) {
       console.log("system has finished")
       return {status:"stop", content:molecules}
     }
-    else if (molecules["butanal"]["status"] == "not-started") {
+    else if (butanal_status == "not-started") {
       molecules["butanal"]["status"] = "started"
       return {status:"continue", content:molecules}
       
     }
-    else if (molecules["butanal"]["status"] == "started" && molecules["butanal"]["latest_concentration"] <= boundaries["butanal"]) {
-      molecules["butanal"]["status"] == "finished"
+    else if (butanal_status === "started" && butanal_conc <= boundaries["butanal"]) {
+      molecules["butanal"]["status"] = "finished"
+      molecules["PAC"]["status"] = "started"
       return {status:"cascade_step_1_finished", content:molecules}
-
+    }
+    else if (PAC_status === "started" && PAC_conc <= boundaries["PAC"]) {
+      console.log("boundaries PAC", boundaries["PAC"])
+      molecules["PAC"]["status"] = "finished"
+      return {status:"cascade_step_2_finished", content:molecules}
+    }
+    else {
+      console.log("no case hits here")
+      console.log("Die Moleküle sind im else case",molecules, butanal_status, butanal_conc, PAC_status, PAC_conc)
+      return {status:"continue", content:molecules}
     }
   }
-
-
-
 }

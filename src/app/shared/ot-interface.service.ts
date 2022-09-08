@@ -36,7 +36,7 @@ export class OtInterfaceService {
 
   startMeasurement():Observable<any> {
     console.log("es funktioniert")
-    return this.http.get<any>("http://127.0.0.1:5000/api/nmr/start")
+    return this.http.get<any>("http://127.0.0.1:5000/api/ot/measure")
   }
 
   stopFlow():Observable<any> {

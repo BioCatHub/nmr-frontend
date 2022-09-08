@@ -1,10 +1,9 @@
-<div class="card card-formatter">
-
-  <h2>control panel </h2>
+<div class="card card-style-general">
+  <h2 class="card-header">Control and calibration functions</h2>
 
   <div class="clr-row">
-    <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-      <div class="card control-card-format">
+    <div class="clr-col">
+      <div class="card control-box-style">
         <h3 class="card-header">Test LED Stripe</h3>
         <div class="card-block">
           <div *ngIf="!loading" class="card-text">
@@ -23,8 +22,8 @@
       </div>
     </div>
 
-    <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-      <div class="card control-card-format">
+    <div class="clr-col">
+      <div class="card control-box-style">
         <h3 class="card-header">Test peristaltic pump</h3>
         <div class="card-block">
           <div *ngIf="!loading_pump" class="card-text">
@@ -42,8 +41,8 @@
         </div>
       </div>
     </div>
-    <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-      <div class="card control-card-format">
+    <div class="clr-col">
+      <div class="card control-box-style">
         <h3 class="card-header">Test feeding pump</h3>
         <div class="card-block">
           <div *ngIf="!loading" class="card-text">
@@ -67,70 +66,4 @@
 
 </div>
 
-<div class="clr-row">
-
-
-
-
-  <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-    <div class="card">
-      <h3 class="card-header">calibrate pump</h3>
-      <div class="card-block">
-        <div *ngIf="!loading" class="card-text">
-          <button class="btn btn-primary" (click)="calibratePump()"> Stop flow meachnism </button>
-        </div>
-        <div *ngIf="stop_flow_stauts" class="card-text spin-container">
-          <span class="spinner spinner-inline"></span>
-        </div>
-        <div class="card-footer">
-          <span *ngIf="LED" class="label label-success">stop flow ongoing</span>
-          <span *ngIf="!LED" class="label label-danger">stop flow inactive</span>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="clr-col-lg-3 clr-col-md-4 clr-col-5">
-    <div class="card">
-      <h3 class="card-header">timed measurement</h3>
-      <div class="card-block">
-        <div *ngIf="!loading" class="card-text">
-          <button class="btn btn-primary" (click)="startTimerTests()"> start timer </button>
-        </div>
-        <div *ngIf="timer_automated_measurement" class="card-text spin-container">
-          <div class="label label-success">measurment in progress</div>
-          <div class="spinner spinner-inline"></div>
-        </div>
-        <div *ngIf="Inactivation" class="card-text spin-container">
-          <div class="label label-success">inactivation ongoing</div>
-          <div class="spinner spinner-inline"></div>
-        </div>
-        <div class="card-footer">
-          <clr-checkbox-wrapper>
-            <input type="checkbox" clrCheckbox value="enzymeAdded" name="options1" [checked]="enzymeAdded"
-              (change)="enzymeAdded = !enzymeAdded" />
-            <label>Enzyme added?</label>
-          </clr-checkbox-wrapper>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<app-calibration></app-calibration>
-
-
-<button (click)="setTime()"> set time </button>
-
-{{data.data | json}}
-
-<div class="clr-row">
-  <div class="clr-col-4">
-    <span class="label label-light-blue"> Next measurement at {{time.getHours()}}:{{time.getMinutes()}}</span>
-  </div>
-</div>
-
-<div id="pagegraph" #pagegraph></div>
+<app-automated-system></app-automated-system>

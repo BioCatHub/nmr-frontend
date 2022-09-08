@@ -16,6 +16,7 @@ import { AutomatedSystemComponent } from './automated-system/automated-system.co
 //import { CdsModule } from '@cds/angular';
 //import { ClarityIcons, userIcon } from '@cds/core/icon';
 
+import {ReactiveFormsModule} from "@angular/forms"
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
@@ -36,6 +37,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     HttpClientModule,
     CommonModule,
     PlotlyModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
