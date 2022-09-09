@@ -40,7 +40,7 @@ export class AutomatedSystemComponent implements OnInit {
 // variables needed during the cascade process
   myForm: FormGroup;
   time = new Date()
-  reactionDuration = 10000
+  reactionDuration = 120000
   number = 0
   timeOfFirstMeasurement: Date
   timeActualMeasurment: Date
@@ -91,6 +91,7 @@ export class AutomatedSystemComponent implements OnInit {
 
       // update plotly graph
         let data = this.Cc.updateMeasurmentData(this.data, e, this.timeOfFirstMeasurement)
+        this.data = data
         Plotly.update('pagegraph', data.data, this.data.layout)
         console.log("die data sind", data.data)
 
@@ -117,14 +118,11 @@ export class AutomatedSystemComponent implements OnInit {
         }
 
         else if(status == "cascade_step_1_finished"){            
-          console.log("Molecule object", this.Molecules)
           this.Molecules = moleculeUpdate["content"]
-          console.log("Molecule object after update", this.Molecules)
           this.Inactivation = true
           this.ot.inactiveReaction().subscribe((e) => {
             this.Inactivation = false
             this.pump2 = true
-
             this.ot.startReaction2(this.myForm.value).subscribe((e) => {
               console.log("reaction 2 has started")
               this.startTimerTests()

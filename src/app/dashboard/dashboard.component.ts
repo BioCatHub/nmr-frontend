@@ -101,6 +101,21 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+
+  startPump3() {
+    this.loading_pump = true
+    this.ot.start_pump_3().subscribe((e) => {
+      console.log(e)
+    })
+  }
+
+  stopPump3() {
+    this.loading_pump = false
+    this.ot.stop_pump_3().subscribe((e) => {
+      console.log(e)
+    })
+  }
+
   stopPump() {
     this.loading_pump = true
     this.ot.stopPump().subscribe((e) => {
@@ -127,6 +142,8 @@ export class DashboardComponent implements OnInit {
       console.log(e)
     })
   }
+
+  // The content below is probably not of use any more! 
 
   runSwitch() {
     let day: number = 7

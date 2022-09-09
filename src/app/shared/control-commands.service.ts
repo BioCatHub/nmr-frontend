@@ -13,7 +13,7 @@ export class ControlCommandsService {
       return 1800000
     }
     else if (!EnzymeStatus) {
-      return 10000
+      return 120000
     }
   }
 
@@ -28,8 +28,9 @@ export class ControlCommandsService {
 
     let y_benzaldehyde = data.data[0]["y"]
     let y_PAC = data.data[1]["y"]
-    y_benzaldehyde.push(2)
-    y_PAC.push(3)
+    console.log("das Update is:", update)
+    y_benzaldehyde.push(update["butanal"]["concentration"])
+    y_PAC.push(update["PAC"]["concentration"])
 
     let updated = {
       data: [

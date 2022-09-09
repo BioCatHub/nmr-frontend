@@ -1,4 +1,7 @@
 <div class="card card-style-general">
+
+Are there Problem? Report <a href="https://github.com/StephanM87/NMR_package/issues"> here </a>
+
   <h2 class="card-header">Control and calibration functions</h2>
 
   <div class="clr-row">
@@ -43,11 +46,11 @@
     </div>
     <div class="clr-col">
       <div class="card control-box-style">
-        <h3 class="card-header">Test feeding pump</h3>
+        <h3 class="card-header">Transaminase feeding pump</h3>
         <div class="card-block">
           <div *ngIf="!loading" class="card-text">
-            <button class="btn btn-primary" (click)="startPump2()"> start Pump2 </button>
-            <button class="btn btn-primary" (click)="stopPump2()"> stop Pump 2 </button>
+            <button class="btn btn-primary" (click)="startPump2()"> Start </button>
+            <button class="btn btn-primary" (click)="stopPump2()"> Stop </button>
           </div>
           <div *ngIf="loading" class="card-text spin-container">
             <span class="spinner spinner-inline"></span>
@@ -60,6 +63,27 @@
         </div>
       </div>
     </div>
+    <div class="clr-col">
+      <div class="card control-box-style">
+        <h3 class="card-header">Amine donor feeding pump</h3>
+        <div class="card-block">
+          <div *ngIf="!loading" class="card-text">
+            <button class="btn btn-primary" (click)="startPump3()"> Start </button>
+            <button class="btn btn-primary" (click)="stopPump3()"> Stop </button>
+          </div>
+          <div *ngIf="loading" class="card-text spin-container">
+            <span class="spinner spinner-inline"></span>
+          </div>
+          <div class="card-footer">
+            <span *ngIf="LED" class="label label-success">LED on</span>
+            <span *ngIf="!LED" class="label label-danger">LED off</span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 
 
