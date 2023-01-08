@@ -22,7 +22,7 @@ export class AutomatedSystemComponent implements OnInit {
 
   data = {
     data: [
-     { x: [], y: [], type: 'scatter', name: "3-OH-benzaldehyde" },
+     { x: [15.753033333333333, 31.518083333333333, 75.27738333333333, 119.04028333333333, 162.80608333333333], y: [20.471119197357112, 45.33744537561042, 19.52605436101166, 20.566362638097893, 19.089837148457054], type: 'scatter', name: "3-OH-benzaldehyde" },
      { x: [], y: [], type: 'scatter', name: "Phenylacetylcarbinol" }
     ],
     layout: { title: 'Reaction flow' }
