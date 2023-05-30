@@ -30,7 +30,9 @@
       <h3 class="card-header">Step 3 Run Cascade</h3>
       <div class="card-block cascadeBlock">
         <div *ngIf="!loading" class="card-title">
-          <button class="btn btn-primary" (click)="startTimerTests()"> start cascade </button>
+          
+          <button *ngIf="cascade_not_started" class="btn btn-primary" (click)="startTimerTests()"> start cascade </button>
+          <div *ngIf="cascade_not_started==false"> <span class="badge badge-purple"> Cascade has started <span class="clr-sr-only">item in a badge</span></span> </div>
         </div>
         <div class="card-text">
         <div *ngIf="timer_automated_measurement" class="spin-container">

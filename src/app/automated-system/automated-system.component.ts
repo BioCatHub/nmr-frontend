@@ -36,6 +36,7 @@ export class AutomatedSystemComponent implements OnInit {
   loop = true
   pump2
   enzymeAdded = false
+  cascade_not_started = true
   loading
 // variables needed during the cascade process
   myForm: FormGroup;
@@ -79,7 +80,14 @@ export class AutomatedSystemComponent implements OnInit {
 
   startTimerTests() {
 
+    // Start the cascade
+
     console.log("Die nummer ist", this.number)
+    console.log("Cascade has started")
+    this.cascade_not_started = false
+
+    // defies the T0 value, which will be the reference to calculate in 
+    // the later process the time differences between measurements
 
     if (this.number == 0) {
       this.timeOfFirstMeasurement = new Date()
@@ -125,7 +133,8 @@ export class AutomatedSystemComponent implements OnInit {
           this.Molecules = moleculeUpdate["content"]
           this.Inactivation = true
           this.ot.inactiveReaction().subscribe((e) => {
-            this.Inactivation = false
+            // Iactivation is removed for test purposes from this setup
+            //this.Inactivation = false
             this.pump2 = true
             this.ot.startReaction2(this.myForm.value).subscribe((e) => {
               console.log("reaction 2 has started")
