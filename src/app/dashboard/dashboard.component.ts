@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
   Molecules
   boundaries = { butanal: 3 }
   pump2
-  pumpTimeReaction2 = 20
+  pumpTimeReaction2 = {"pump1":5, "pump2":6}
 
 
   ngOnInit(): void {

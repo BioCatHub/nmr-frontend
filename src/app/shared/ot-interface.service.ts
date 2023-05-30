@@ -55,21 +55,21 @@ export class OtInterfaceService {
   }
 
   start_pump_2():Observable<any> {
-    console.log("automated system")
+    console.log("dosage pump 1")
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/start_pump_2")
   }
   stop_pump_2():Observable<any> {
-    console.log("automated system")
+    console.log("dosage pump 1 stop")
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/stop_pump_2")
   }
 
   start_pump_3():Observable<any> {
-    console.log("automated system")
+    console.log("dosage pump 2")
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/start_pump_3")
   }
 
   stop_pump_3():Observable<any> {
-    console.log("automated system")
+    console.log("dosage pump 2 stop")
     return this.http.get<any>("http://127.0.0.1:5000/api/ot/stop_pump_3")
   }
 

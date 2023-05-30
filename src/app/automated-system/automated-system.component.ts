@@ -22,8 +22,8 @@ export class AutomatedSystemComponent implements OnInit {
 
   data = {
     data: [
-     { x: [], y: [], type: 'scatter', name: "3-OH-benzaldehyde" },
-     { x: [], y: [], type: 'scatter', name: "Phenylacetylcarbinol" }
+     { x: [ 12.987433333333334], y: [16.835032361327688], type: 'scatter', name: "3-OH-benzaldehyde" },
+     { x: [12.987433333333334], y: [ 0.930355735122606], type: 'scatter', name: "Phenylacetylcarbinol" }
     ],
     layout: { title: 'Reaction flow' }
   };
@@ -40,7 +40,9 @@ export class AutomatedSystemComponent implements OnInit {
 // variables needed during the cascade process
   myForm: FormGroup;
   time = new Date()
-  reactionDuration = 120000
+  #reactionDuration = 12000
+  reactionDuration = 36000                         
+
   number = 0
   timeOfFirstMeasurement: Date
   timeActualMeasurment: Date
@@ -48,7 +50,7 @@ export class AutomatedSystemComponent implements OnInit {
   input = 3
 //Objects needed to descide the progress
   Molecules
-  boundaries = { butanal: 3, PAC:17 }
+  boundaries = { butanal: 3, PAC:3 }
 
   
 
@@ -61,6 +63,8 @@ export class AutomatedSystemComponent implements OnInit {
       pump2:""
     })
     }
+
+    
 
     printForm(){
       let value = this.myForm.controls["pump1"].value
