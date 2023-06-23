@@ -1,5 +1,4 @@
-<button (click)="printForm()" > Form ausgeben</button>
-<app-calibration></app-calibration>
+
 
 <div class="card card-style-general">
   <h2 class="card-header">Step 3: Setp the feeding rates</h2>
@@ -57,9 +56,6 @@
 
 
 
-
-<button (click)="setTime()"> set time </button>
-
 {{data.data | json}}
 
 <div class="clr-row">
@@ -69,4 +65,21 @@
 </div>
 
 <div id="pagegraph" #pagegraph></div>
+</div>
+
+<div class="clr-row">
+  <div class="clr-col">
+    <div class="card control-box-style">
+      <h3 class="card-header">Submit data to BioCatHub</h3>
+      <div class="card-block">
+        <div *ngIf="!loading" class="card-text">
+          <button class="btn btn-primary" (click)="submitToBioCatHub()"> Start </button>
+        </div>
+        <div *ngIf="loading" class="card-text spin-container">
+          <span class="spinner spinner-inline"></span>
+        </div>
+      </div>
+    </div>
+    
+  </div>   
 </div>

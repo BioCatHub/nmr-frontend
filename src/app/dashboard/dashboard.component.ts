@@ -4,6 +4,7 @@ import { timer, Observable } from "rxjs"
 import { BehaviorSubject } from 'rxjs'
 import { VisualisationComponent } from "../visualisation/visualisation.component"
 import { ControlCommandsService } from "../shared/control-commands.service"
+
 import * as Plotly from 'plotly.js/dist/plotly.js';
 import { Config, Data, Layout } from 'plotly.js/dist/plotly.js';
 
@@ -142,6 +143,19 @@ export class DashboardComponent implements OnInit {
       console.log(e)
     })
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // The content below is probably not of use any more! 
 

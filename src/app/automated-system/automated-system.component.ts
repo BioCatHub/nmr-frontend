@@ -4,6 +4,7 @@ import { timer, Observable } from "rxjs"
 import { BehaviorSubject } from 'rxjs'
 import { VisualisationComponent } from "../visualisation/visualisation.component"
 import { ControlCommandsService } from "../shared/control-commands.service"
+import {BiocathubSubmissionService} from "../shared/biocathub-submission.service"
 import * as Plotly from 'plotly.js/dist/plotly.js';
 import { Config, Data, Layout } from 'plotly.js/dist/plotly.js';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -18,12 +19,12 @@ export class AutomatedSystemComponent implements OnInit {
   constructor(private ot: OtInterfaceService,
     private comp: VisualisationComponent,
     private Cc: ControlCommandsService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private bch: BiocathubSubmissionService) { }
 
   data = {
-    data: [
-     { x: [15.753033333333333, 31.518083333333333, 75.27738333333333, 119.04028333333333, 162.80608333333333], y: [20.471119197357112, 45.33744537561042, 19.52605436101166, 20.566362638097893, 19.089837148457054], type: 'scatter', name: "3-OH-benzaldehyde" },
-     { x: [], y: [], type: 'scatter', name: "Phenylacetylcarbinol" }
+    data: [ 
+      { "x": [ 8.82365, 18.76525, 56.724, 94.93486666666666, 132.88901666666666, 170.85535 ], "y": [ 12.144897283808954, 11.714074069699333, 6.25730431844186, 7.064673939788032, 5.9859489030214235, 2.6960464296340483 ], "type": "scatter", "name": "3-OH-benzaldehyde" }, { "x": [  8.82365, 18.76525, 56.724, 94.93486666666666, 132.88901666666666, 170.85535 ], "y": [ 0.930355735122606, 0.607903866392912, 0.5151924492556964, 3.699283591315337, 5.058921282478785, 6.180616578526451, 7.462971287080487 ], "type": "scatter", "name": "3-OH-benzaldehyde" } 
     ],
     layout: { title: 'Reaction flow' }
   };
@@ -144,5 +145,13 @@ export class AutomatedSystemComponent implements OnInit {
 
 
     }
+
+    submitToBioCatHub(){
+      let data_model = this.bch.mapData(this.data)
+      window.alert("jetzt gehts los")
+      let response = this.ot.submit_BioCatHub_data(data_model).subscribe((response) => {console.log(response)
+      window.open("https://retrobiohub.org/rbh/?name="+response.toString(), "_blank")})
+
+    } 
 
 }

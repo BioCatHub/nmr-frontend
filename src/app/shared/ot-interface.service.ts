@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs'
 
 @Injectable({
@@ -8,6 +8,15 @@ import { Observable, throwError } from 'rxjs'
 export class OtInterfaceService {
 
   constructor(private http:HttpClient) { }
+
+  submit_BioCatHub_data(data_model):Observable<any> {
+    console.log("es funktioniert")
+    let bch_model = JSON.stringify(data_model)
+    let headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'})
+    window.alert("BioCatHub-submission")
+    //return this.http.post<any>("http://127.0.0.1:5000/retrobiohub/lightCas",bch_model, {headers:{'Content-Type': 'application/json'}})
+    return this.http.post<any>("https://retrobiohub.org/retrobiohub/lightCas",bch_model, {headers:{'Content-Type': 'application/json'}})
+  }
 
   startLED():Observable<any> {
     console.log("es funktioniert")
@@ -77,6 +86,7 @@ export class OtInterfaceService {
     console.log("automated system")
     let pump_duration = JSON.stringify({duration:time})
     return this.http.post<any>("http://127.0.0.1:5000/api/ot/reaction2",pump_duration,{headers:{'Content-Type': 'application/json'}} )
+
   }
 
 }
