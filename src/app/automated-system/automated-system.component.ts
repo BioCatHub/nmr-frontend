@@ -22,10 +22,10 @@ export class AutomatedSystemComponent implements OnInit {
 
   data = {
     data: [
-     { x: [ 12.987433333333334], y: [16.835032361327688], type: 'scatter', name: "3-OH-benzaldehyde" },
-     { x: [12.987433333333334], y: [ 0.930355735122606], type: 'scatter', name: "Phenylacetylcarbinol" }
+     { x: [ 8.82365, 18.76525, 56.724, 94.93486666666666, 132.88901666666666, 170.85535], y: [12.144897283808954, 11.714074069699333, 6.25730431844186, 7.064673939788032, 5.9859489030214235, 2.6960464296340483], type: 'scatter', name: "3-OH-benzaldehyde" },
+     { x: [8.82365, 18.76525, 56.724, 94.93486666666666, 132.88901666666666, 170.85535], y: [ 0.607903866392912, 0.5151924492556964, 3.699283591315337, 5.058921282478785, 6.180616578526451, 7.462971287080487], type: 'scatter', name: "Phenylacetylcarbinol" }
     ],
-    layout: { title: 'Reaction flow' }
+    layout: { title: 'Reaction progress curve' }
   };
 
 // variables needed for describing the cascade status
@@ -42,7 +42,8 @@ export class AutomatedSystemComponent implements OnInit {
   myForm: FormGroup;
   time = new Date()
   #reactionDuration = 12000
-  reactionDuration = 36000                         
+  reactionDuration = 36000
+                           
 
   number = 0
   timeOfFirstMeasurement: Date
@@ -131,15 +132,15 @@ export class AutomatedSystemComponent implements OnInit {
 
         else if(status == "cascade_step_1_finished"){            
           this.Molecules = moleculeUpdate["content"]
-          this.Inactivation = true
-          this.ot.inactiveReaction().subscribe((e) => {
+          //this.Inactivation = true
+          //this.ot.inactiveReaction().subscribe((e) => {
             // Iactivation is removed for test purposes from this setup
             //this.Inactivation = false
-            this.pump2 = true
+            //this.pump2 = true
             this.ot.startReaction2(this.myForm.value).subscribe((e) => {
               console.log("reaction 2 has started")
               this.startTimerTests()
-              })
+              //})
             })
           }
 

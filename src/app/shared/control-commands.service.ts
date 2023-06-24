@@ -11,6 +11,7 @@ export class ControlCommandsService {
   setReactionDuration(EnzymeStatus) {
     if (EnzymeStatus == true) {
       return 1800000
+      //return 120000
     }
     else if (!EnzymeStatus) {
       return 120000
