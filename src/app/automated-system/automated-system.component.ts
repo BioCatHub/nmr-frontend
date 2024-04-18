@@ -52,6 +52,7 @@ export class AutomatedSystemComponent implements OnInit {
   input = 3
 //Objects needed to descide the progress
   Molecules
+  //Boundaries are right now handled by the backend. Implmentation intended for future features.
   boundaries = { butanal: 3, PAC:3 }
 
   
@@ -132,15 +133,15 @@ export class AutomatedSystemComponent implements OnInit {
 
         else if(status == "cascade_step_1_finished"){            
           this.Molecules = moleculeUpdate["content"]
-          //this.Inactivation = true
-          //this.ot.inactiveReaction().subscribe((e) => {
+          this.Inactivation = true
+          this.ot.inactiveReaction().subscribe((e) => {
             // Iactivation is removed for test purposes from this setup
-            //this.Inactivation = false
-            //this.pump2 = true
+            this.Inactivation = false
+            this.pump2 = true
             this.ot.startReaction2(this.myForm.value).subscribe((e) => {
               console.log("reaction 2 has started")
-              this.startTimerTests()
-              //})
+              //this.startTimerTests()
+              })
             })
           }
 
